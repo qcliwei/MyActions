@@ -1,5 +1,4 @@
 import requests
-import time
 import os
 
 
@@ -47,5 +46,3 @@ if __name__ == '__main__':
 
     msg1 = sign(P00001)
     sendMsg(SKEY, msg1)
-
-    print(msg1)
