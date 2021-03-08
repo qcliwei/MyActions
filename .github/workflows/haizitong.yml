@@ -10,6 +10,7 @@ on:
     types: started
 
 jobs:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: '拉取代码'
