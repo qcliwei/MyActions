@@ -14,7 +14,7 @@ reply_url = "https://hzt-app1.haizitong.com/2/s/survey/question/reply"
 
 # VARIABLE NAME
 DEVICE = 'c577e0b6a8b68bd0fbd43361ddd1dffa8e34e6395764c897c2471219eba8ceb2'
-USERID = os.environ['USERID']
+USERID = '5d5d5e535410be2afa2fea0c'
 PASSWD = os.environ['PASSWD']
 SKEY = os.environ['SKEY']
 
