@@ -14,13 +14,12 @@ jobs:
     runs-on: ubuntu-latest
    
     steps:
-      - name: 初始化Python环境
       - uses: actions/checkout@master
-      
-      - name: 安装依赖并替换环境变量
+      - name: 初始化Python环境
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
+      - name: 安装依赖并替换环境变量
         env:
           SKEY: ${{ secrets.SKEY }}
           P00001: ${{ secrets.P00001 }}
