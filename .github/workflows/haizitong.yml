@@ -23,7 +23,6 @@ jobs:
         run: python -m pip install --upgrade requests
       - name: '开始执行脚本'
         env:
-          DEVICE: ${{ secrets.DEVICE }}
           USERID：${{ secrets.USERID }}
           PASSWD：${{ secrets.PASSWD }}
           SKEY: ${{ secrets.SKEY }}

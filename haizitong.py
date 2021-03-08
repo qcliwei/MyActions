@@ -13,7 +13,7 @@ user_login_url = "https://hzt-app1.haizitong.com/2/org/mobile/user/login"
 reply_url = "https://hzt-app1.haizitong.com/2/s/survey/question/reply"
 
 # VARIABLE NAME
-DEVICE = os.environ['DEVICE']
+DEVICE = 'c577e0b6a8b68bd0fbd43361ddd1dffa8e34e6395764c897c2471219eba8ceb2'
 USERID = os.environ['USERID']
 PASSWD = os.environ['PASSWD']
 SKEY = os.environ['SKEY']
