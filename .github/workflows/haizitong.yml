@@ -23,4 +23,5 @@ jobs:
       - name: '开始执行脚本'
         env:
           SKEY: ${{ secrets.SKEY }}
+          PASSWD: ${{ secrets.PASSWD }}
         run: python haizitong.py
