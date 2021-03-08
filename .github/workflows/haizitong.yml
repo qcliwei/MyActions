@@ -4,7 +4,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: 10 14 * * *
+    - cron: 0 10 0 * *
   watch:
     types: started
 
