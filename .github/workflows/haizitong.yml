@@ -22,5 +22,5 @@ jobs:
         run: python -m pip install --upgrade requests
       - name: '开始执行脚本'
         env:
-          SKEY：${{ secrets.SKEY }}
+          SKEY: ${{ secrets.SKEY }}
         run: python haizitong.py
