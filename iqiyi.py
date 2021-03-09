@@ -44,4 +44,5 @@ if __name__ == '__main__':
     SKEY = os.environ['SKEY']
 
     msg1 = sign(P00001)
+    print(msg1)
     sendMsg(SKEY, msg1)

@@ -38,8 +38,8 @@ def mobileLogin():
         response = session.post(url=account_login_url, data=loginRequestData, headers=HEADERS).json()
     except Exception as e:
         logger.error("手机登录出错" + e)
-    if 'errorCode' in response:
-        logger.error("手机登录请求失败" + f"{response['data']['errorCode']}")
+    if 'errorCode' in response['data']:
+        logger.error("手机登录请求失败" + f"{response['data']}")
     else:
         return response['data']
 
@@ -57,8 +57,8 @@ def userLogin(mobileLoginData):
             response = session.post(url=user_login_url, data=userLoginRequestData).json()
         except Exception as e:
             logger.error("用户登录出错" + e)
-        if 'errorCode' in response:
-            logger.error("用户登录请求失败" + f"{response['data']['errorCode']}")
+        if 'errorCode' in response['data']:
+            logger.error("用户登录请求失败" + f"{response['data']}")
         else:
             return response['data']['token']
     else:
@@ -77,8 +77,8 @@ def reply(userToken):
             response = session.post(url=reply_url, data=replyRequestData, auth=(USERID, userToken))
         except Exception as e:
             logger.error("提交答案出错" + e)
-        if 'errorCode' in response:
-            logger.error("提交答案请求失败" + f"{response['data']['errorCode']}")
+        if 'errorCode' in response['data']:
+            logger.error("提交答案请求失败" + f"{response['data']}")
         else:
             logger.info("打卡完成")
             sendMsg('打卡完成')
