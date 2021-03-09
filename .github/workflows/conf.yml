@@ -6,6 +6,12 @@ on:
     - cron: 0 1 * * *
   watch:
     types: started
+  workflow_dispatch:
+    inputs:
+      noMessage:
+        description: '是否推送推送'
+        required: true
+        default: '否'
 
 jobs:
   build:
@@ -25,4 +31,4 @@ jobs:
         env:
           SKEY: ${{ secrets.SKEY }}
           P00001: ${{ secrets.P00001 }}
-        run: python3 iqiyi.py
+        run: python3 iqiyi.py ${{ github.event.inputs.noMessage }}

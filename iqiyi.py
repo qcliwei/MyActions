@@ -1,5 +1,6 @@
 import requests
 import os
+import sys
 
 
 def sign(user):
@@ -40,9 +41,11 @@ def sendMsg(key, content):
 
 
 if __name__ == '__main__':
-    P00001 = os.environ['P00001']
-    SKEY = os.environ['SKEY']
+    print(f'{sys.argv}')
 
-    msg1 = sign(P00001)
-    print(msg1)
-    sendMsg(SKEY, msg1)
+    # P00001 = os.environ['P00001']
+    # SKEY = os.environ['SKEY']
+    #
+    # msg1 = sign(P00001)
+    # print(msg1)
+    # sendMsg(SKEY, msg1)
