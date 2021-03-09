@@ -13,8 +13,8 @@ user_login_url = "https://hzt-app1.haizitong.com/2/org/mobile/user/login"
 reply_url = "https://hzt-app1.haizitong.com/2/s/survey/question/reply"
 
 # VARIABLE NAME
-DEVICE = 'c577e0b6a8b68bd0fbd43361ddd1dffa8e34e6395764c897c2471219eba8ceb2'
-USERID = '5d5d5e535410be2afa2fea0c'
+DEVICE = os.environ['DEVICE']
+USERID = os.environ['USERID']
 PASSWD = os.environ['PASSWD']
 SKEY = os.environ['SKEY']
 
@@ -84,6 +84,7 @@ def reply(userToken):
             sendMsg('打卡完成')
     return
 
+
 def sendMsg(content):
     url = f"https://sctapi.ftqq.com/{SKEY}.send"
     parmas = {
@@ -93,7 +94,8 @@ def sendMsg(content):
     headers = {
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
     }
-    requests.post(url=url, data=parmas, headers=headers)
+    r = requests.post(url=url, data=parmas, headers=headers)
+    logger.info(f"推送返回={r.text}")
 
 
 def get_basic_auth_str(username, password):

@@ -4,7 +4,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: 10 0 * * *
+    - cron: 10 22 * * *
   watch:
     types: started
 
@@ -12,6 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: '获取服务器时间'
+        run: echo "服务器时间:$(date +'%Y-%m-%dT%H:%M:%S')"
       - name: '拉取代码'
         uses: actions/checkout@v2
       - name: '初始化Python环境'
@@ -24,4 +26,6 @@ jobs:
         env:
           SKEY: ${{ secrets.SKEY }}
           PASSWD: ${{ secrets.PASSWD }}
+          DEVICE: ${{ secrets.DEVICE }}
+          USERID: ${{ secrets.USERID }}
         run: python haizitong.py

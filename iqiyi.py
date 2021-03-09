@@ -23,7 +23,6 @@ def sign(user):
             msg = res.json()["data"]["signInfo"]["msg"]
     else:
         msg = res.json()["msg"]
-    print(msg)
     return msg
 
 
@@ -37,7 +36,7 @@ def sendMsg(key, content):
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
     }
     res = requests.post(url=url, data=parmas, headers=headers)
-    print(res)
+    print(res.text)
 
 
 if __name__ == '__main__':
