@@ -74,7 +74,7 @@ def reply(userToken):
                             'who': '1',
                             'surveyId': '5f3a5ac3d017dc0867d2b6fe'}
         try:
-            response = session.post(url=reply_url, data=replyRequestData, auth=(USERID, userToken))
+            response = session.post(url=reply_url, data=replyRequestData, auth=(USERID, userToken)).json()
         except Exception as e:
             logger.error("提交答案出错" + e)
         if 'errorCode' in response['data']:
