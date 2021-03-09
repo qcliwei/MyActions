@@ -41,11 +41,14 @@ def sendMsg(key, content):
 
 
 if __name__ == '__main__':
-    print(f'{sys.argv}')
+    P00001 = os.environ['P00001']
+    SKEY = os.environ['SKEY']
 
-    # P00001 = os.environ['P00001']
-    # SKEY = os.environ['SKEY']
-    #
-    # msg1 = sign(P00001)
-    # print(msg1)
-    # sendMsg(SKEY, msg1)
+    msg1 = sign(P00001)
+    print(msg1)
+
+    if len(sys.argv) > 1:
+        if sys.argv[1] == '是':
+            sendMsg(SKEY, msg1)
+    else:
+        sendMsg(SKEY, msg1)

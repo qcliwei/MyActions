@@ -5,8 +5,7 @@ on:
       - master
   schedule:
     - cron: 5 23 * * *
-  watch:
-    types: started
+  workflow_dispatch:
 
 jobs:
   build:

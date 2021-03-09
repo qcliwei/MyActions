@@ -4,12 +4,10 @@ on:
     branches: [master]
   schedule:
     - cron: 0 1 * * *
-  watch:
-    types: started
   workflow_dispatch:
     inputs:
       noMessage:
-        description: '是否推送推送'
+        description: '是否推送'
         required: true
         default: '否'
 
