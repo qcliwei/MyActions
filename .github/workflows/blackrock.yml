@@ -26,5 +26,5 @@ jobs:
           SKEY: ${{ secrets.SKEY }}
         run: |
           pip install requests
-          pip install BeautifulSoup
+          pip install beautifulsoup4
           python3 blackrock.py
