@@ -20,7 +20,9 @@ def query():
     profit = f'{(float(price) - buyPrice) * 100 / buyPrice}'
     proportion = str(profit)[:5] + '%'
 
-    message = f'{nowText}:{price},\n今日变动:{up},\n成本:{buyPrice},持仓盈亏:{proportion}'
+    message = f'* {nowText}:**{price}**,\n\n* 今日变动:**{up}**,\n\n* 成本:**{buyPrice}**,持仓盈亏:**{proportion}**'
+
+
     print(f'{message}')
     sendMsg(message)
 
