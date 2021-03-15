@@ -28,7 +28,7 @@ def query():
 def sendMsg(content):
     url = f"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={SKEY}"
     parmas = {
-        'markdown': content,
+        'markdown': {'content': content},
         'msgtype': 'markdown'
     }
     headers = {
