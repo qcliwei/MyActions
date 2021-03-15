@@ -37,11 +37,12 @@ def mobileLogin():
     try:
         response = session.post(url=account_login_url, data=loginRequestData, headers=HEADERS).json()
     except Exception as e:
-        logger.error("手机登录出错" + e)
-    if 'errorCode' in response['data']:
-        logger.error("手机登录请求失败" + f"{response['data']}")
+        logger.error("手机登录出错" + str(e))
     else:
-        return response['data']
+        if 'errorCode' in response['data']:
+            logger.error("手机登录请求失败" + f"{response['data']}")
+        else:
+            return response['data']
 
 
 def userLogin(mobileLoginData):
@@ -56,11 +57,12 @@ def userLogin(mobileLoginData):
         try:
             response = session.post(url=user_login_url, data=userLoginRequestData).json()
         except Exception as e:
-            logger.error("用户登录出错" + e)
-        if 'errorCode' in response['data']:
-            logger.error("用户登录请求失败" + f"{response['data']}")
+            logger.error("用户登录出错" + str(e))
         else:
-            return response['data']['token']
+            if 'errorCode' in response['data']:
+                logger.error("用户登录请求失败" + f"{response['data']}")
+            else:
+                return response['data']['token']
     else:
         logger.error('手机登录接口返回空')
         return
@@ -76,23 +78,24 @@ def reply(userToken):
         try:
             response = session.post(url=reply_url, data=replyRequestData, auth=(USERID, userToken)).json()
         except Exception as e:
-            logger.error("提交答案出错" + e)
-        if 'errorCode' in response['data']:
-            logger.error("提交答案请求失败" + f"{response['data']}")
+            logger.error("提交答案出错" + str(e))
         else:
-            logger.info("打卡完成")
-            sendMsg('打卡完成')
+            if 'errorCode' in response['data']:
+                logger.error("提交答案请求失败" + f"{response['data']}")
+            else:
+                logger.info("打卡完成")
+                sendMsg('打卡完成')
     return
 
 
 def sendMsg(content):
-    url = f"https://sctapi.ftqq.com/{SKEY}.send"
+    url = f"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={SKEY}"
     parmas = {
-        'desp': content,
-        'title': '孩子通'
+        'text': {'content': f'孩子通签到:\n{content}'},
+        'msgtype': 'text'
     }
     headers = {
-        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        "Content-Type": "application/json;charset=utf-8"
     }
     r = requests.post(url=url, data=parmas, headers=headers)
     logger.info(f"推送返回={r.text}")

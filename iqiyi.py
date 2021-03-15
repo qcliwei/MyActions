@@ -28,13 +28,13 @@ def sign(user):
 
 
 def sendMsg(key, content):
-    url = f"https://sctapi.ftqq.com/{key}.send"
+    url = f"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={key}"
     parmas = {
-        'desp': content,
-        'title': '爱奇艺'
+        'text': {'content': f'爱奇艺签到:\n{content}'},
+        'msgtype': 'text'
     }
     headers = {
-        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        "Content-Type": "application/json;charset=utf-8"
     }
     res = requests.post(url=url, data=parmas, headers=headers)
     print(res.text)

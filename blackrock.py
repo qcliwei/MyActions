@@ -20,21 +20,19 @@ def query():
     profit = f'{(float(price) - buyPrice) * 100 / buyPrice}'
     proportion = str(profit)[:5] + '%'
 
-    message = f'* {nowText}:**{price}**,\n\n* 今日变动:**{up}**,\n\n* 成本:**{buyPrice}**,持仓盈亏:**{proportion}**'
+    message = f'# 贝莱德世界科技基金A2\n{nowText}:**{price}**,\n今日变动:**{up}**,\n成本:**{buyPrice}**,持仓盈亏:**{proportion}**'
 
-
-    print(f'{message}')
     sendMsg(message)
 
 
 def sendMsg(content):
-    url = f"https://sctapi.ftqq.com/{SKEY}.send"
+    url = f"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={SKEY}"
     parmas = {
-        'desp': content,
-        'title': '贝莱德世界科技基金A2'
+        'markdown': content,
+        'msgtype': 'markdown'
     }
     headers = {
-        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        "Content-Type": "application/json;charset=utf-8"
     }
     r = requests.post(url=url, data=parmas, headers=headers)
     print(f"推送返回={r.text}")
