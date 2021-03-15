@@ -20,8 +20,7 @@ def query():
     profit = f'{(float(price) - buyPrice) * 100 / buyPrice}'
     proportion = str(profit)[:5] + '%'
 
-    message = f'# 贝莱德世界科技基金A2\n{nowText}:**{price}**,\n今日变动:**{up}**,\n成本:**{buyPrice}**,持仓盈亏:**{proportion}**'
-
+    message = f"# 贝莱德世界科技基金A2\n{nowText}:**{price}**,\n今日变动:**{up}**,\n成本:**{buyPrice}**,持仓盈亏:**{proportion}**"
     sendMsg(message)
 
 
@@ -34,7 +33,7 @@ def sendMsg(content):
     headers = {
         "Content-Type": "application/json;charset=utf-8"
     }
-    r = requests.post(url=url, data=parmas, headers=headers)
+    r = requests.post(url=url, json=parmas, headers=headers)
     print(f"推送返回={r.text}")
 
 

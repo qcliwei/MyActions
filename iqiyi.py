@@ -36,7 +36,7 @@ def sendMsg(key, content):
     headers = {
         "Content-Type": "application/json;charset=utf-8"
     }
-    res = requests.post(url=url, data=parmas, headers=headers)
+    res = requests.post(url=url, json=parmas, headers=headers)
     print(res.text)
 
 

@@ -97,7 +97,7 @@ def sendMsg(content):
     headers = {
         "Content-Type": "application/json;charset=utf-8"
     }
-    r = requests.post(url=url, data=parmas, headers=headers)
+    r = requests.post(url=url, json=parmas, headers=headers)
     logger.info(f"推送返回={r.text}")
 
 
