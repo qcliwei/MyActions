@@ -79,11 +79,7 @@ def reply(userToken, rsurveyId):
         answers = '[{"options":[{"optionId":"568ace52-38c9-4312-80ad-7ce3ecc4b09b"}],"itemId":"1445cb71-8b3a-4995-8cb1-f13bf6fb0f20"},{"options":[{"optionId":"e09d9680-98e5-43b2-a59a-b7e4cfdf6f0e"}],"itemId":"9dd3337a-10ca-4f96-96b2-484f2b3da52d"},{"options":[{"optionId":"6bdd4bb4-de08-4455-8be8-6121aac81b2c"}],"itemId":"dee0523d-e4ea-47e2-886e-c8321296f092"},{"options":[{"optionId":"4a834e27-571a-463c-ac86-7e300d65ddef"}],"itemId":"96e92454-a36d-469c-88bd-05e6d1a154de"},{"files":[{"picHeight":1316,"picWidth":794,"url":"http:\/\/min.haizitong.com\/2\/ali\/i\/aa35461fbf924eaaa360f8a895d9568e","type":"i"}],"itemId":"a6781f9f32284a1dac65900c309cc2e9"}]'
         replyRequestData = {'answers': answers,
                             'who': '1',
-<<<<<<< HEAD
                             'surveyId': rsurveyId}
-=======
-                            'surveyId': "60e55c540390494dd4607f61"}
->>>>>>> 0ede176aa634309fd4257999eecb5d3b15e0c7fe
         try:
             response = session.post(url=reply_url, data=replyRequestData, auth=(USERID, userToken)).json()
         except Exception as e:
