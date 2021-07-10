@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 # API_URL
 account_login_url = "https://hzt-app1.haizitong.com/2/org/account/login"
 user_login_url = "https://hzt-app1.haizitong.com/2/org/mobile/user/login"
+task_list_url = "https://hzt-app2.haizitong.com/2/s/jia/task/list"
 reply_url = "https://hzt-app2.haizitong.com/2/s/survey/question/reply"
 
 # VARIABLE NAME
@@ -17,6 +18,7 @@ DEVICE = os.environ['DEVICE']
 USERID = os.environ['USERID']
 PASSWD = os.environ['PASSWD']
 SKEY = os.environ['SKEY']
+
 
 HEADERS = {
     'pkg': 'hztJia/1/6.1.3.1328',
@@ -68,13 +70,16 @@ def userLogin(mobileLoginData):
         return
 
 
-def reply(userToken):
+def reply(userToken, rsurveyId):
+    if rsurveyId is None:
+        logger.error('没有获取任务surveyId')
+        return
     if userToken is not None:
         logger.info('开始提交答案请求')
-        answers = '[{"options":[{"optionId":"568ace52-38c9-4312-80ad-7ce3ecc4b09b"}],"itemId":"1445cb71-8b3a-4995-8cb1-f13bf6fb0f20"},{"options":[{"optionId":"e09d9680-98e5-43b2-a59a-b7e4cfdf6f0e"}],"itemId":"9dd3337a-10ca-4f96-96b2-484f2b3da52d"},{"options":[{"optionId":"6bdd4bb4-de08-4455-8be8-6121aac81b2c"}],"itemId":"dee0523d-e4ea-47e2-886e-c8321296f092"},{"options":[{"optionId":"4a834e27-571a-463c-ac86-7e300d65ddef"}],"itemId":"96e92454-a36d-469c-88bd-05e6d1a154de"},{"files":[{"picHeight":1316,"picWidth":794,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/0087c2cf18c346308636756879ba7e07","type":"i"}],"itemId":"a6781f9f32284a1dac65900c309cc2e9"}]'
+        answers = '[{"options":[{"optionId":"568ace52-38c9-4312-80ad-7ce3ecc4b09b"}],"itemId":"1445cb71-8b3a-4995-8cb1-f13bf6fb0f20"},{"options":[{"optionId":"e09d9680-98e5-43b2-a59a-b7e4cfdf6f0e"}],"itemId":"9dd3337a-10ca-4f96-96b2-484f2b3da52d"},{"options":[{"optionId":"6bdd4bb4-de08-4455-8be8-6121aac81b2c"}],"itemId":"dee0523d-e4ea-47e2-886e-c8321296f092"},{"options":[{"optionId":"4a834e27-571a-463c-ac86-7e300d65ddef"}],"itemId":"96e92454-a36d-469c-88bd-05e6d1a154de"},{"files":[{"picHeight":1316,"picWidth":794,"url":"http:\/\/min.haizitong.com\/2\/ali\/i\/aa35461fbf924eaaa360f8a895d9568e","type":"i"}],"itemId":"a6781f9f32284a1dac65900c309cc2e9"}]'
         replyRequestData = {'answers': answers,
                             'who': '1',
-                            'surveyId': '60e6706c1d42034df2abfa02'}
+                            'surveyId': rsurveyId}
         try:
             response = session.post(url=reply_url, data=replyRequestData, auth=(USERID, userToken)).json()
         except Exception as e:
@@ -110,7 +115,24 @@ def get_basic_auth_str(username, password):
     return 'Basic ' + encodestr.decode()
 
 
+def getQuestionID(userToken) -> str:
+    logger.info('开始获取打卡任务列表')
+    try:
+        response = session.get(url=task_list_url, auth=(USERID, userToken)).json()
+    except Exception as e:
+        logger.error("获取任务列表失败" + str(e))
+    else:
+        if 'errorCode' in response['data']:
+            logger.error("获取任务列表失败" + f"{response['data']}")
+        else:
+            model = response['data']
+            for item in model:
+                if item['status'] == 1:
+                    return item['dataId']
+
+
 if __name__ == '__main__':
     mLogin = mobileLogin()
     uLogin = userLogin(mLogin)
-    reply(uLogin)
+    surveyId = getQuestionID(uLogin)
+    reply(uLogin, surveyId)
