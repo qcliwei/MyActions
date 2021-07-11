@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 # API_URL
 account_login_url = "https://hzt-app1.haizitong.com/2/org/account/login"
 user_login_url = "https://hzt-app1.haizitong.com/2/org/mobile/user/login"
-task_list_url = "https://hzt-app2.haizitong.com/2/s/jia/task/list"
+task_list_url = "https://hzt-app1.haizitong.com/2/s/jia/task/list"
 reply_url = "https://hzt-app2.haizitong.com/2/s/survey/question/reply"
 
 # VARIABLE NAME
@@ -22,7 +22,8 @@ SKEY = os.environ['SKEY']
 
 HEADERS = {
     'pkg': 'hztJia/1/6.1.3.1328',
-    'User-Agent': 'haizitongJia/6.1.3 (iPhone; iOS 14.4; Scale/2.00)'
+    'User-Agent': 'haizitongJia/6.1.3 (iPhone; iOS 14.4; Scale/2.00)',
+    'Cache-Control': 'no-cache'
 }
 
 session = requests.Session()
@@ -118,7 +119,7 @@ def get_basic_auth_str(username, password):
 def getQuestionID(userToken) -> str:
     logger.info('开始获取打卡任务列表')
     try:
-        response = session.get(url=task_list_url, auth=(USERID, userToken)).json()
+        response = session.get(url=task_list_url, auth=(USERID, userToken), headers=HEADERS).json()
     except Exception as e:
         logger.error("获取任务列表失败" + str(e))
     else:
@@ -134,5 +135,5 @@ def getQuestionID(userToken) -> str:
 if __name__ == '__main__':
     mLogin = mobileLogin()
     uLogin = userLogin(mLogin)
-    surveyId = getQuestionID(uLogin)
-    reply(uLogin, surveyId)
+    # surveyId = getQuestionID(uLogin)
+    reply(uLogin, '60e55c540390494dd4607f61')
