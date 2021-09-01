@@ -88,6 +88,7 @@ def reply(userToken, rsurveyId):
         else:
             if 'errorCode' in response['data']:
                 logger.error("提交答案请求失败" + f"{response['data']}")
+                sendMsg(f"{response['data']}")
             else:
                 logger.info("打卡完成")
                 sendMsg('打卡完成')
