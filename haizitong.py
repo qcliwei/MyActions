@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 account_login_url = "https://hzt-app1.haizitong.com/2/org/account/login"
 user_login_url = "https://hzt-app1.haizitong.com/2/org/mobile/user/login"
 task_list_url = "https://hzt-app1.haizitong.com/2/s/jia/task/list"
-reply_url = "https://hzt-app2.haizitong.com/2/s/survey/question/reply"
+reply_url = "https://hzt-app1.haizitong.com/2/s/survey/question/reply"
 
 # VARIABLE NAME
 DEVICE = os.environ['DEVICE']
