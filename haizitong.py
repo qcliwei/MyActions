@@ -77,7 +77,7 @@ def reply(userToken, rsurveyId):
         return
     if userToken is not None:
         logger.info('开始提交答案请求')
-        answers = '[{"options":[{"optionId":"568ace52-38c9-4312-80ad-7ce3ecc4b09b"}],"itemId":"1445cb71-8b3a-4995-8cb1-f13bf6fb0f20"},{"options":[{"optionId":"e09d9680-98e5-43b2-a59a-b7e4cfdf6f0e"}],"itemId":"9dd3337a-10ca-4f96-96b2-484f2b3da52d"},{"options":[{"optionId":"6bdd4bb4-de08-4455-8be8-6121aac81b2c"}],"itemId":"dee0523d-e4ea-47e2-886e-c8321296f092"},{"options":[{"optionId":"4a834e27-571a-463c-ac86-7e300d65ddef"}],"itemId":"96e92454-a36d-469c-88bd-05e6d1a154de"},{"files":[{"picHeight":788,"picWidth":1012,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/f6d002f4c2cb4364b40ea15c14a14eac","type":"i"}],"itemId":"a6781f9f32284a1dac65900c309cc2e9"}]'
+        answers = '[{"optionId":"d3561819-cc60-41b7-884d-1ec3106141d6"}],"itemId":"b4c83fbe-8f77-4154-9f6a-dfa7444aa318"},{"text":"36.5","itemId":"fa13c111-bcf2-4a84-b70b-5a5d9772857c"},{"options":[{"optionId":"d8097d9556f442c0800dcec009da5cc6"}],"itemId":"22c650fd65e54c348fb0d8ce40fe0f5c"},{"options":[{"optionId":"cb07573c-56f0-4ae9-92db-7ed451e5df30"}],"itemId":"303ccb79-a60c-47ca-921b-275f6ced43a6"},{"files":[{"picHeight":1792,"picWidth":828,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/03bc31c43fd4458792550dc8065f7f80","type":"i"}],"itemId":"8c5284e0-4380-40b8-b031-38903aeac459"},{"options":[{"optionId":"3dae73e8e87c4196b151a891593c45c9"}],"itemId":"9bc3dbb0c378405e8f8529639c7942fb"},{"text":"李慰37.5柯文汇37.4 ","itemId":"b85ff1f8-e2c5-43a9-a7d4-c88effd19014"},{"options":[{"optionId":"5913424e-adf0-4a3e-8683-aa1f7d151543"}],"itemId":"7cc442c7-2349-4ba7-8233-9c43f922dc2c"},{"files":[{"picHeight":2339,"picWidth":1080,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/325d366ed4ad4651bd02687ed6baa473","type":"i"},{"picHeight":1792,"picWidth":828,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/e1b650793866421f81a5bce0cc03e429","type":"i"}],"itemId":"76674aa4-2ebe-4f4f-937a-383ef0b939fc"},{"options":[{"optionId":"27ea48201611412e93341b0e7f4e89e0"}],"itemId":"7f6dc20b5e6e4ffe86f1ba073f8e3d30"},{"files":[{"picHeight":788,"picWidth":1012,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/0f5cf6761f494feea4ced6834f06960d","type":"i"}],"itemId":"7dcfb064-5794-42db-a057-2a3bc542a648"}]'
         replyRequestData = {'answers': answers,
                             'who': '1',
                             'surveyId': rsurveyId}
@@ -136,4 +136,4 @@ if __name__ == '__main__':
     mLogin = mobileLogin()
     uLogin = userLogin(mLogin)
     # surveyId = getQuestionID(uLogin)
-    reply(uLogin, '6119b4d4bf70492fa61ace96')
+    reply(uLogin, '612c4f2f991fb72d5456a1cb')
