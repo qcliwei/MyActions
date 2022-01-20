@@ -3,27 +3,20 @@ import os
 import sys
 
 
-def sign(user):
-    url = "https://tc.vip.iqiyi.com/taskCenter/task/queryUserTask"
-    params = {
-        "P00001": user,
-        "autoSign": "yes"
-    }
-    res = requests.get(url, params=params)
+def sign():
+    url = "https://community.iqiyi.com/openApi/score/add?agenttype=1&agentversion=0&appKey=basic_pca&appver=0&authCookie=b8idXVEm2OLrvyV8FClBZm1ERgrP6nCkT9AxyO80BFm1QAIZ05FpCREyVgdoVzoJsDfIx01&channelCode=sign_pcw&dfp=a083a25d5711d2425389af01bab7aad35aa905032ce121a4248b45d541a44088c1&scoreType=1&srcplatform=1&typeCode=point&userId=1571264382&user_agent=Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/97.0.4692.71%20Safari/537.36&verticalCode=iQIYI&sign=5c9f596788d9387a20fa43a8be7c64a5"
+    res = requests.get(url)
     if res.json()["code"] == "A00000":
         try:
             growth = res.json()[
-                "data"]["signInfo"]["data"]["rewardMap"]["growth"]
-            continueSignDaysSum = res.json(
-            )["data"]["signInfo"]["data"]["continueSignDaysSum"]
-            rewardDay = 7 if continueSignDaysSum % 28 <= 7 else (
-                14 if continueSignDaysSum % 28 <= 14 else 28)
-            roundDay: int = 28 if continueSignDaysSum % 28 == 0 else continueSignDaysSum % 28
-            msg = f"+{growth}成长值\n连续签到：{continueSignDaysSum}天\n签到周期：{roundDay}天/{rewardDay}天"
+                "data"][0]
+            quantity = growth["score"]
+            continued = growth["continuousValue"]
+            msg = f"+获得积分：{quantity}\n累计签到：{continued}天"
         except:
-            msg = res.json()["data"]["signInfo"]["msg"]
+            msg = res.json()["message"]
     else:
-        msg = res.json()["msg"]
+        msg = res.json()["message"]
     return msg
 
 
@@ -41,10 +34,9 @@ def sendMsg(key, content):
 
 
 if __name__ == '__main__':
-    P00001 = os.environ['P00001']
     SKEY = os.environ['SKEY']
 
-    msg1 = sign(P00001)
+    msg1 = sign()
     print(msg1)
 
     if len(sys.argv) > 1:
