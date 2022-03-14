@@ -19,7 +19,6 @@ USERID = os.environ['USERID']
 PASSWD = os.environ['PASSWD']
 SKEY = os.environ['SKEY']
 
-
 HEADERS = {
     'pkg': 'hztJia/1/6.1.3.1328',
     'User-Agent': 'haizitongJia/6.1.3 (iPhone; iOS 14.4; Scale/2.00)',
@@ -78,9 +77,10 @@ def reply(userToken, rsurveyId):
         return
     if userToken is not None:
         logger.info('开始提交答案请求')
-        replyRequestData = 'answers=[{"options":[{"optionId":"98b7bc4a2aa445e2aa5150b6b0f0b6a0"}],"itemId":"24c607196bcb4fe192686ed1066c772d"},{"text":"36.6","itemId":"b59abaa4d82d4dea8917397a123a10dc"},{"options":[{"optionId":"1d1c3be515eb4efe8c03b81687d4b468"}],"itemId":"545a657079b54deba3bd08d8ece54412"},{"options":[{"optionId":"4c8c4fde2b9540dfb0f5637abdf7d584"}],"itemId":"9cb91b0034df4beca7d6581cfd8cbf79"},{"files":[{"picHeight":1792,"picWidth":828,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/6695e199df2346ac8dab896f03627c6e273869","type":"i"}],"itemId":"ae05b41629d5430090f0b068f6ed4084"},{"options":[{"optionId":"8ad9cc9c340e44ef814d81a230696f38"}],"itemId":"e139b9c506304670a6dcce18b4b77d23"},{"text":"李慰37.5柯文汇37.4","itemId":"beebea22904d42f68b60468673674f4b"},{"options":[{"optionId":"26d3109e5d3c4ab3bb7aa7a1f0dd00d3"}],"itemId":"5b7c475be42943bca66c385713c455d5"},{"files":[{"picHeight":2532,"picWidth":1170,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/ddf2c2236ddc443f94937b11acd9a326649112","type":"i"},{"picHeight":1792,"picWidth":828,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/64316c967d0b4d1fbbef5e5e097b371f289166","type":"i"}],"itemId":"1f41561d961a40df896598be4ac8c0f6"},{"options":[{"optionId":"a53a623f8935401b88303bb8716f53e4"}],"itemId":"4a4d52bf230644d9b0cbd90fa3eff7bd"},{"files":[{"picHeight":788,"picWidth":1012,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/0581a174d4874b9098e43d417ef1a6aa109405","type":"i"}],"itemId":"92d41c9854c041e59e76f69d888ac4be"}]&signUrl=https://min.haizitong.com/2/ali/i/664226fa124b4d0f8a35ecb22d330f34890902&surveyId=620f1866e05af864866e100a&who=1'
+        replyRequestData = 'answers=[{"options":[{"optionId":"98b7bc4a2aa445e2aa5150b6b0f0b6a0"}],"itemId":"24c607196bcb4fe192686ed1066c772d"},{"text":"36.6","itemId":"b59abaa4d82d4dea8917397a123a10dc"},{"options":[{"optionId":"1d1c3be515eb4efe8c03b81687d4b468"}],"itemId":"545a657079b54deba3bd08d8ece54412"},{"options":[{"optionId":"4c8c4fde2b9540dfb0f5637abdf7d584"}],"itemId":"9cb91b0034df4beca7d6581cfd8cbf79"},{"files":[{"picHeight":1792,"picWidth":828,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/ffbe444d4a88409b987ed274df1c6dc2771479","type":"i"}],"itemId":"ae05b41629d5430090f0b068f6ed4084"},{"options":[{"optionId":"8ad9cc9c340e44ef814d81a230696f38"}],"itemId":"e139b9c506304670a6dcce18b4b77d23"},{"text":"李慰37.5柯文汇37.4","itemId":"beebea22904d42f68b60468673674f4b"},{"options":[{"optionId":"26d3109e5d3c4ab3bb7aa7a1f0dd00d3"}],"itemId":"5b7c475be42943bca66c385713c455d5"},{"files":[{"picHeight":1792,"picWidth":828,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/0d45f4043a194423a2e36901087e29d3874673","type":"i"},{"picHeight":2532,"picWidth":1170,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/c8409d4a941d4bf592aa6b42208c1440841972","type":"i"}],"itemId":"1f41561d961a40df896598be4ac8c0f6"},{"options":[{"optionId":"a53a623f8935401b88303bb8716f53e4"}],"itemId":"4a4d52bf230644d9b0cbd90fa3eff7bd"},{"options":[{"optionId":"e92e56564dc14cde8dcf4744abec6273"}],"itemId":"ccd17564cd3842829634692e3c95de82"}]&signUrl=https://min.haizitong.com/2/ali/i/20b6e5df8d664b9b98b830b830a47dff219256&surveyId=622c32bff19ee144a597a5a5&who=1'
         try:
-            response = session.post(url=reply_url, data=replyRequestData.encode('utf-8'), auth=(USERID, userToken), headers=HEADERS).json()
+            response = session.post(url=reply_url, data=replyRequestData.encode('utf-8'), auth=(USERID, userToken),
+                                    headers=HEADERS).json()
         except Exception as e:
             logger.error("提交答案出错" + str(e))
         else:
