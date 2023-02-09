@@ -14,9 +14,9 @@ jobs:
       - name: '获取服务器时间'
         run: echo "服务器时间:$(date +'%Y-%m-%dT%H:%M:%S')"
       - name: '拉取代码'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: '初始化Python环境'
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: '3.7'
       - name: '安装依赖'
