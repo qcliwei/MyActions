@@ -79,8 +79,7 @@ def reply(userToken, rsurveyId):
         logger.info('开始提交答案请求')
         replyRequestData = 'answers=[{"options":[{"optionId":"98b7bc4a2aa445e2aa5150b6b0f0b6a0"}],"itemId":"24c607196bcb4fe192686ed1066c772d"},{"text":"36.7","itemId":"b59abaa4d82d4dea8917397a123a10dc"},{"files":[{"picHeight":788,"picWidth":1012,"url":"https:\/\/min.haizitong.com\/2\/ali\/i\/8e3fe302c6164fb38e4d41bbeb188b14594566","type":"i"}],"itemId":"92d41c9854c041e59e76f69d888ac4be"}]&surveyId=63e435d22c87ad4f048f5090&who=1'        
         try:
-        response = session.post(url=reply_url, data=replyRequestData.encode('utf-8'), auth=(USERID, userToken),
-                                    headers=HEADERS).json()
+            response = session.post(url=reply_url, data=replyRequestData.encode('utf-8'), auth=(USERID, userToken),headers=HEADERS).json()
         except Exception as e:
             logger.error("提交答案出错" + str(e))
         else:
